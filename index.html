@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="lib/normalize.css">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white!important;
+    }
+
+    .dashboard-img-box {
+      display: flex;
+      justify-content: center;
+      width: clamp(85%, 90vw, 90%);
+      height: 400px;
+      border-radius: 20px;
+      border: 2px solid crimson;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .dashboard-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .divider {
+      height: 1px;
+      margin-top: 20px;
+      width: 65vw;
+      border: 0.5px solid black;
+      opacity: 0.2;
+    }
+
+    .divide {
+      display: inline-flex;
+      justify-content: space-around;
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .boxes {
+      background: gray;
+    }
+
+    .overview-boxes {
+      width: clamp(85%, 90vw, 90%);
+      margin: 0 auto;
+    }
+
+  </style>
+
+</head>
+<body>
+
+    <div class="d-flex" style="height: 100vh">
+      <div class="p-3 bg-dark text-white shadow" id="side-bar" style="width: 280px">
+        <nav class="nav flex-column" style="padding: 20px; font-size: 18px;">
+          <a class="navbar-brand" href="#" style="font-size: 20px; font-weight: 600; padding: 0 0 30px 0">
+            <img src="assets/logo-with-circle.png" alt="Logo" width="40px" height="40px" class="d-inline-block align-text-center">
+            Grocer's Choice
+          </a>
+          <a class="nav-link active" href="#">
+            <i class="ti ti-home"></i>
+            Dashboard
+          </a>
+          <a class="nav-link" href="#">
+            <i class="ti ti-users"></i>
+            Customers
+          </a>
+          <a class="nav-link" href="#">
+            <i class="ti ti-packages"></i>
+            Items</a>
+          <a class="nav-link" href="#">
+            <i class="ti ti-shopping-cart"></i>
+            Orders
+          </a>
+          <a class="nav-link" href="#">
+            <i class="ti ti-file-dollar"></i>
+            Invoice
+          </a>
+        </nav>
+      </div>
+      <div class="p-3 bg-secondary flex-grow-1 text-dark" id="content" style="font-size: 20px; font-weight: 400">
+        <div class="container">
+          <h4>Dashboard</h4>
+          <div class="dashboard-img-box">
+            <img src="assets/supermarket.png" class="dashboard-img" alt="">
+          </div>
+          <div class="divide">
+            <h4>Overview</h4>
+            <div class="divider"></div>
+          </div>
+          <div class="row overview-boxes">
+            <div class="col-md-4">
+              <div class="p-4 boxes">
+                <p>Items</p>
+                <i class="ti ti-packages"></i>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-4 boxes">
+                <p>Customers</p>
+                <i class="ti ti-users"></i>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-4 boxes">
+                <p>Orders</p>
+                <i class="ti ti-shopping-cart"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
