@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POS | Customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="lib/normalize.css">
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body>
+
+    <div class="d-flex" style="height: 100vh">
+        <div class="p-3 bg-dark text-dark shadow" id="side-bar" style="width: 280px; position: relative">
+            <nav class="nav flex-column" style="padding: 20px; font-size: 18px; position: fixed">
+                <a class="navbar-brand" href="#" style="font-size: 20px; font-weight: 600; padding: 0 0 30px 0">
+                    <img src="assets/logo-with-circle.png" alt="Logo" width="40px" height="40px" class="d-inline-block align-text-center">
+                    Grocer's Choice
+                </a>
+                <a class="nav-link active" href="#">
+                    <i class="ti ti-home"></i>
+                    Dashboard
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="ti ti-users"></i>
+                    Customers
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="ti ti-packages"></i>
+                    Items</a>
+                <a class="nav-link" href="#">
+                    <i class="ti ti-shopping-cart"></i>
+                    Orders
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="ti ti-file-dollar"></i>
+                    Invoice
+                </a>
+            </nav>
+        </div>
+        <div class="p-3 bg-black flex-grow-1 text-white" id="content" style="font-size: 20px; font-weight: 400">
+            <div class="container">
+
+                <nav class="navbar bg-black">
+                    <div class="container-fluid">
+                        <a class="navbar-brand">
+                            Customers
+                            <button type="button" class="btn btn-dark btn-sm"><i class="ti ti-plus"></i> New</button>
+                        </a>
+                        <form class="d-flex search" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-dark text-white" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <div class="card bg-black" style="width: 100%;">
+
+                        <form class="p-3">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control form-control-sm" id="floatingName" placeholder="John Doe">
+                                <label for="floatingName">Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control form-control-sm" id="floatingAddress" placeholder="Colombo">
+                                <label for="floatingAddress">Address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control form-control-sm" id="floatingPhone" placeholder="+94710000000">
+                                <label for="floatingPhone">Phone No.</label>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-primary btn-dark btn-sm" type="button">Edit</button>
+                                <button class="btn btn-primary btn-dark btn-sm" type="button">Delete</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
