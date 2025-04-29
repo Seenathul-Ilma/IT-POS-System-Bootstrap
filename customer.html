@@ -1,92 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>POS | Customer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
     <link rel="stylesheet" href="lib/normalize.css">
     <link rel="stylesheet" href="styles/style.css">
-
 </head>
 <body>
 
-    <div class="d-flex" style="height: 100vh">
-        <div class="p-3 bg-secondary text-dark shadow" id="side-bar" style="width: 280px; position: relative">
-            <nav class="nav flex-column text-dark" style="padding: 20px; font-size: 18px; position: fixed">
-                <a class="navbar-brand" href="#" style="font-size: 20px; font-weight: 600; padding: 0 0 30px 0">
-                    <img src="assets/logo-with-circle.png" alt="Logo" width="40px" height="40px" class="d-inline-block align-text-center">
-                    Grocer's Choice
-                </a>
-                <a class="nav-link active" href="#">
-                    <i class="ti ti-home"></i>
-                    Dashboard
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="ti ti-users"></i>
-                    Customers
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="ti ti-packages"></i>
-                    Items</a>
-                <a class="nav-link" href="#">
-                    <i class="ti ti-shopping-cart"></i>
-                    Orders
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="ti ti-file-dollar"></i>
-                    Invoice
-                </a>
-            </nav>
-        </div>
-        <div class="p-3 bg-light flex-grow-1 text-dark" id="content" style="font-size: 20px; font-weight: 400">
-            <div class="container">
+<!-- Top navbar for mobile only -->
+<nav class="navbar bg-secondary text-white d-md-none fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Grocer's Choice</a>
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMobileNav" aria-controls="offcanvasMobileNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
 
-                <nav class="navbar bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand text-secondary">
-                            Customers
-                            <button type="button" class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i> New</button>
-                        </a>
-                        <form class="d-flex search" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-secondary text-dark btn-sm" type="submit">Search</button>
+<!-- Offcanvas sidebar for mobile -->
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="offcanvasMobileNav" aria-labelledby="offcanvasMobileNavLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasMobileNavLabel">Grocer's Choice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav flex-column text-dark">
+            <li class="nav-item"><a class="nav-link active" href="#"><i class="ti ti-home"></i> Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-users"></i> Customers</a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-packages"></i> Items</a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-shopping-cart"></i> Orders</a></li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="ti ti-file-dollar"></i> Invoice</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="d-flex" style="min-height: 100vh">
+    <!-- Sidebar for desktop -->
+    <div class="p-3 bg-secondary text-dark shadow d-none d-md-block" id="side-bar" style="width: 280px; position: relative">
+        <nav class="nav flex-column text-dark" style="padding: 20px; font-size: 18px; position: fixed">
+            <a class="navbar-brand" href="#" style="font-size: 20px; font-weight: 600; padding-bottom: 30px;">
+                <img src="assets/logo-with-circle.png" alt="Logo" width="40px" height="40px" class="d-inline-block align-text-center">
+                Grocer's Choice
+            </a>
+            <a class="nav-link active" href="#"><i class="ti ti-home"></i> Dashboard</a>
+            <a class="nav-link" href="#"><i class="ti ti-users"></i> Customers</a>
+            <a class="nav-link" href="#"><i class="ti ti-packages"></i> Items</a>
+            <a class="nav-link" href="#"><i class="ti ti-shopping-cart"></i> Orders</a>
+            <a class="nav-link" href="#"><i class="ti ti-file-dollar"></i> Invoice</a>
+        </nav>
+    </div>
+
+    <div class="p-3 bg-light flex-grow-1 text-dark" id="content" style="font-size: 20px; font-weight: 400; margin-top: 56px;">
+        <div class="container">
+
+            <!-- Top right admin dropdown -->
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="navbar-brand d-flex align-items-center" href="#" style="gap: 8px;">
+                        <i class="ti ti-user-circle" style="font-size: 30px;"></i>
+                        <div class="dropdown">
+                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin User
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><button class="dropdown-item" type="button">Sign Up</button></li>
+                                <li><button class="dropdown-item" type="button">Log In</button></li>
+                            </ul>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="divider bg-dark-subtle mt-2 mb-3" style="width: 100%;"></div>
+
+            <!-- Page heading and search -->
+            <nav class="navbar bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-secondary">
+                        Customers
+                        <button type="button" class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i> New</button>
+                    </a>
+                    <form class="d-flex search" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-secondary text-dark btn-sm" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+
+            <!-- Form and table -->
+            <div class="d-grid gap-2 col-12 mx-auto">
+                <div class="d-flex flex-column flex-md-row gap-3">
+                    <!-- Left form card -->
+                    <div class="card bg-light w-100 w-md-50">
+                        <form class="p-2">
+                            <div class="card-body">
+                                <div class="mb-1">
+                                    <label for="name" class="form-label" style="font-size: 17px;">Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="name">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="phone" class="form-label" style="font-size: 17px;">Contact</label>
+                                    <input type="text" class="form-control form-control-sm" id="phone">
+                                </div>
+                                <div class="mb-2">
+                                    <label for="address" class="form-label" style="font-size: 17px;">Address</label>
+                                    <textarea class="form-control form-control-sm" id="address" style="height: 60px;"></textarea>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button class="btn btn-primary btn-dark btn-sm" type="button">Reset</button>
+                                    <button class="btn btn-primary btn-dark btn-sm" type="button">Edit</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
-                </nav>
 
-                <div class="d-grid gap-2 col-12 mx-auto">
-                    <div class="d-flex flex-row gap-3">
-                        <div class="card bg-light" style="width: 50%;">
-
-                            <form class="p-2">
-                                <div class="card-body">
-                                    <div class="mb-1">
-                                        <label for="name" class="form-label" style="height: 5px; font-size: 17px">Name</label>
-                                        <input type="text" class="form-control form-control-sm" id="name">
-                                    </div>
-                                    <div class="mb-1">
-                                        <label for="phone" class="form-label" style="height: 5px; font-size: 17px">Contact</label>
-                                        <input type="text" class="form-control form-control-sm" id="phone">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="address" class="form-label" style="height: 5px; font-size: 17px">Address</label>
-                                        <textarea class="form-control form-control-sm" id="address" style="height: 60px"></textarea>
-                                    </div>
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                        <button class="btn btn-primary btn-dark btn-sm" type="button">Reset</button>
-                                        <button class="btn btn-primary btn-dark btn-sm" type="button">Edit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="card" style="width: 50%;">
-                            <div class="card-body">
-                                <div class="d-md-flex justify-content-md-end">
-                                    <button class="btn btn-primary btn-dark btn-sm" type="button">Remove</button>
-                                </div>
+                    <!-- Right table card -->
+                    <div class="card w-100 w-md-50">
+                        <div class="card-body">
+                            <div class="d-md-flex justify-content-md-end">
+                                <button class="btn btn-primary btn-dark btn-sm" type="button">Remove</button>
+                            </div>
+                            <div class="table-responsive">
                                 <table class="table table-hover table-striped">
                                     <thead>
                                     <tr>
@@ -99,36 +137,35 @@
                                     <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <td>Nimal</td>
+                                        <td>Colombo</td>
+                                        <td>+94750642345</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
+                                        <td>Ruwan</td>
+                                        <td>Panadura</td>
+                                        <td>+94750642345</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">3</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>@social</td>
+                                        <td>Kavitha</td>
+                                        <td>Kalutara</td>
+                                        <td>+94750642345</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
-                </div>
+                </div> <!-- row end -->
+            </div> <!-- grid end -->
 
         </div>
     </div>
-    </div>
+</div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>
