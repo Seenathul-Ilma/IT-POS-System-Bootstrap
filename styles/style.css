@@ -67,3 +67,7 @@ form {
 .search {
     flex-direction: row;
 }
+
+tr, th {
+    font-size: 15px;
+}
