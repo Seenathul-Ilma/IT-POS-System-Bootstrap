@@ -77,8 +77,15 @@
                     <div class="card card-sm">
                         <div class="card-header">
                             <form class="d-flex search" role="search">
-                                <input class="form-control me-2" id="search_customer_input" type="search" placeholder="Search Customers.." aria-label="Search">
+                                <input class="form-control me-2" list="customerDatalistOptions" id="search_customer_input" type="search" placeholder="Search Customers.." aria-label="Search">
                                 <button class="btn btn-secondary text-dark btn-sm" id="search_customer_btn" type="submit"><i class="ti ti-search"></i></button>
+                                <datalist id="customerDatalistOptions">
+                                    <!--<option value="San Francisco">
+                                    <option value="New York">
+                                    <option value="Seattle">
+                                    <option value="Los Angeles">
+                                    <option value="Chicago">-->
+                                </datalist>
                             </form>
                         </div>
                         <div class="card-body">
@@ -102,53 +109,69 @@
 
     <script>
         // Sample items array (can be fetched from backend too)
-        let items = [
-            { name: "Toffee", price: 15.00, qty: 20 },
-            { name: "Cake", price: 1200.00, qty: 5 },
-            { name: "Chocolate", price: 160.00, qty: 50 },
-            { name: "Lollipop", price: 10.00, qty: 100 },
-            { name: "Biscuit", price: 100.00, qty: 40 },
-            { name: "Marshmallows", price: 150.00, qty: 80 }
-        ];
+        let items = [];
+
+        $(document).ready(function () {
+            items = [
+                { name: "Toffee", price: 15.00, qty: 20 },
+                { name: "Cake", price: 1200.00, qty: 5 },
+                { name: "Chocolate", price: 160.00, qty: 50 },
+                { name: "Lollipop", price: 10.00, qty: 100 },
+                { name: "Biscuit", price: 100.00, qty: 40 },
+                { name: "Marshmallows", price: 150.00, qty: 80 }
+            ];
+            renderItems();
+        });
 
         function renderItems(filter = "") {
-            const container = document.getElementById("item_tbody");
-            container.innerHTML = "";
+            const container = $("#item_tbody");
+            container.empty();
 
-            items
-                .filter(item => item.name.toLowerCase().includes(filter.toLowerCase()))
-                .forEach(item => {
-                    const card = document.createElement("div");
-                    card.className = "col-6 col-md-6 mb-3";
-                    card.innerHTML = `
-                                      <div class="card h-100 bg-light text-dark shadow-sm">
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <div class="text-start">
-                                <h6 class="card-title mb-1">${item.name}</h6>
-                                <p class="card-text mb-2">Rs. ${item.price.toFixed(2)}</p>
-                            </div>
-                            <div class="text-end mt-auto">
-                                <button class="btn btn-dark btn-sm" id="add_to_cart_btn"><i class="ti ti-shopping-cart"></i></button>
+            $.each(items.filter(item => item.name.toLowerCase().includes(filter.toLowerCase())), function (index, item) {
+                const card = `
+                    <div class="col-6 col-md-6 mb-3">
+                        <div class="card h-100 bg-light text-dark shadow-sm">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div class="text-start">
+                                    <h6 class="card-title mb-1">${item.name}</h6>
+                                    <p class="card-text mb-2">Rs. ${item.price.toFixed(2)}</p>
+                                </div>
+                                <div class="text-end mt-auto">
+                                    <button class="btn btn-dark btn-sm" id="add_to_cart_btn"><i class="ti ti-shopping-cart"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 `;
-                    container.appendChild(card);
-                });
+                container.append(card);
+            });
         }
 
-        renderItems();
+        //renderItems();
 
         // Search filter (live typing)
-        document.getElementById("search_item_input").addEventListener("keyup", function () {
-            renderItems(this.value);
+        $("#search_item_input").on("keyup", function () {
+            renderItems($(this).val());
         });
 
         // Search button
-        document.getElementById("search_item_btn").addEventListener("click", function (e) {
+        $("#search_item_btn").on("click", function (e) {
             e.preventDefault();
-            renderItems(document.getElementById("search_item_input").value);
+            renderItems($("#search_item_input").val());
         });
+
+
+        //  get Customer list
+        const customerList = ["John", "Mary", "Nimal", "Jeeva", "Priya", "Akshay"];
+        const datalist_customers = $("#customerDatalistOptions");
+
+        $(document).ready(function () {
+            $.each(customerList, function (index, customer) {
+                const option = `<option value="${customer}">`;
+                datalist_customers.append(option);
+            });
+        });
+
     </script>
 
 
