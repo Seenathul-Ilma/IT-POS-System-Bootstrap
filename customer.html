@@ -318,6 +318,25 @@
             $('#customer_form_fieldset').prop('disabled', false);
         });
 
+        // to search customer by a data
+        $(document).ready(function(){
+            function filterCustomers(){
+                var value = $(this).val().toLowerCase();
+                $("#customer_tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            }
+
+            // to filter customer at live (while typing)
+            $("#search_input").on("keyup", filterCustomers);
+
+            // to filter customer after click search btn
+            $('#search_btn').on('click', function (e) {
+                e.preventDefault();
+                filterCustomers();
+            });
+        });
+
     </script>
 
 </body>
