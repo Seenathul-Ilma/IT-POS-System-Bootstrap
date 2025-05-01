@@ -182,7 +182,7 @@
 
         generateNextId();
 
-        // to load stored customer details on the table
+        // to load stored item details on the table
         function loadItemsOnTable() {
 
             $('#item_tbody').empty();
@@ -209,14 +209,12 @@
             $('#nextId').val(nextId);
         }
 
-        // When Save a new Customer
+        // When Save a new item
         $('#item_save').on('click', function () {
             let id = $('#nextId').val();
             let name = $('#newItemName').val();
             let price = $('#newItemPrice').val();
             let qoh = $('#newItemQoh').val();
-
-            // console.log(`fname: ${fname}, lname: ${lname}, address: ${address}`);
 
             if(name === '' || price === '' || qoh === '') {
                 Swal.fire({
