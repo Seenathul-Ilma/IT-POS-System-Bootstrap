@@ -185,9 +185,9 @@
                         <div class="card h-100 bg-light text-dark shadow-sm">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="text-start">
-                                    <h6 class="card-title mb-1">${item.name} x ${count}</h6>
-                                    <p class="card-text mb-2">Rs. ${item.price.toFixed(2)} x ${count} = ${itemTotalAmount.toFixed(2)}</p>
-                                    <button class="btn btn-outline-dark rounded-circle btn-dark text-white btn-sm me-1 increaseCount" style="width: 20px; height: 20px; padding: 0;"><i class="ti ti-plus"></i></button><span>${count}</span>
+                                    <h6 class="card-title mb-1">${item.name} x <span class="item-cart-count">${count}</span></h6>
+                                    <p class="card-text mb-2 item-total">Rs. ${item.price.toFixed(2)} x <span class="item-cart-count">${count}</span> = <span class="item-total-amount">${itemTotalAmount.toFixed(2)}</span></p>
+                                    <button class="btn btn-outline-dark rounded-circle btn-dark text-white btn-sm me-1 increaseCount" style="width: 20px; height: 20px; padding: 0;"><i class="ti ti-plus"></i></button><span class="item-cart-count">${count}</span>
                                     <button class="btn btn-outline-dark rounded-circle btn-dark text-white btn-sm me-1 decreaseCount" style="width: 20px; height: 20px; padding: 0;"><i class="ti ti-minus"></i></button>
                                 </div>
                                 <div class="text-end mt-auto">
@@ -200,9 +200,31 @@
             $("#item_cart").append(cartCard);
         });
 
+        $(document).on('click', ".increaseCount", function () {
+            const cardBody = $(this).closest(".card-body");
+            const countSpans = cardBody.find(".item-cart-count");
+            const totalItemAmountText = cardBody.find(".item-total-amount");
+            const item = cardBody.find(".card-title").text().split(" x ")[0].trim();
+            const price = items.find(i => i.name === item).price;
+            const itemData = items.find(i => i.name === item);
+
+            // Use the first count span to read the current count
+            let count = parseInt($(countSpans[0]).text());
+            count++;
+
+            // Check quantity limit
+            if (count > itemData.qty) {
+                alert(`Only ${itemData.qty} ${item}(s) available.`);
+                return;
+            }
+
+            countSpans.text(count);
+
+            totalItemAmountText.text((price * count).toFixed(2));
+        });
+
+
     </script>
-
-
 
 </body>
 </html>
