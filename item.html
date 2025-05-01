@@ -68,32 +68,34 @@
                 <div class="card card-sm">
                     <div class="card-body">
                         <form>
-                            <div class="mb-1">
-                                <label for="id" class="form-label mb-0" style="font-size: 17px;">Id</label>
-                                <input class="form-control" id="id" type="text" value="I001" aria-label="readonly input example" readonly>                        </div>
-                            <div class="mb-1">
-                                <label for="item_name" class="form-label mb-0" style="font-size: 17px;">Item Name</label>
-                                <input type="text" class="form-control form-control-sm" id="item_name" placeholder="">
-                            </div>
-                            <div class="mb-1">
-                                <label for="price" class="form-label mb-0" style="font-size: 17px;">Price</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">Rs.</span>
-                                    <input type="number" step="0.01" min="0" class="form-control" id="price" placeholder="">
+                            <fieldset id="item_form_fieldset" disabled>
+                                <div class="mb-1">
+                                    <label for="id" class="form-label mb-0" style="font-size: 17px;">Id</label>
+                                    <input class="form-control" id="id" type="text" value="I001" aria-label="readonly input example" readonly>                        </div>
+                                <div class="mb-1">
+                                    <label for="item_name" class="form-label mb-0" style="font-size: 17px;">Item Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="item_name" placeholder="">
                                 </div>
-                            </div>
-                            <div class="mb-2">
-                                <label for="qoh" class="form-label mb-0" style="font-size: 17px;">Quantity</label>
-                                <div class="input-group">
-                                    <input type="number" step="1" min="1" class="form-control" id="qoh" placeholder="">
-                                    <span class="input-group-text">pcs</span>
+                                <div class="mb-1">
+                                    <label for="price" class="form-label mb-0" style="font-size: 17px;">Price</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rs.</span>
+                                        <input type="number" step="0.01" min="0" class="form-control" id="price" placeholder="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-primary btn-dark btn-sm" id="item_reset" type="button">Reset</button>
-                                <button class="btn btn-primary btn-dark btn-sm" id="item_update" type="button">Edit</button>
-                                <button class="btn btn-primary btn-dark btn-sm" id="item_delete" type="button">Delete</button>
-                            </div>
+                                <div class="mb-2">
+                                    <label for="qoh" class="form-label mb-0" style="font-size: 17px;">Quantity</label>
+                                    <div class="input-group">
+                                        <input type="number" step="1" min="1" class="form-control" id="qoh" placeholder="">
+                                        <span class="input-group-text">pcs</span>
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button class="btn btn-primary btn-dark btn-sm" id="item_reset" type="button">Reset</button>
+                                    <button class="btn btn-primary btn-dark btn-sm" id="item_update" type="button">Edit</button>
+                                    <button class="btn btn-primary btn-dark btn-sm" id="item_delete" type="button">Delete</button>
+                                </div>
+                            </fieldset>
                         </form>
 
                     </div>
@@ -139,8 +141,8 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-1">
-                        <label for="itemId" class="form-label mb-0" style="font-size: 17px;">Id</label>
-                        <input class="form-control" id="itemId" type="text" value="I001" aria-label="readonly input example" readonly>                        </div>
+                        <label for="nextId" class="form-label mb-0" style="font-size: 17px;">Id</label>
+                        <input class="form-control" id="nextId" type="text" value="I001" aria-label="readonly input example" readonly>                        </div>
                     <div class="mb-1">
                         <label for="newItemName" class="form-label mb-0" style="font-size: 17px;">Item Name</label>
                         <input type="text" class="form-control form-control-sm" id="newItemName">
@@ -247,6 +249,22 @@
             $('#newItemQoh').val("");
 
             generateNextId();
+        });
+
+        // select an item by click on a table row
+        $('#item_tbody').on('click', 'tr', function () {
+            //const index = $(this).index();
+            //const selectedItem = item_db[index];
+            selectedItemIndex = $(this).index();
+            const selectedItem = item_db[selectedItemIndex];
+
+            // to fill the form with selected customer's data
+            $('#id').val(selectedItem.id);
+            $('#item_name').val(selectedItem.name);
+            $('#price').val(selectedItem.price);
+            $('#qoh').val(selectedItem.qoh);
+
+            $('#item_form_fieldset').prop('disabled', false);
         });
 
     </script>
