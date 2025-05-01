@@ -71,7 +71,7 @@
                             <fieldset id="item_form_fieldset" disabled>
                                 <div class="mb-1">
                                     <label for="id" class="form-label mb-0" style="font-size: 17px;">Id</label>
-                                    <input class="form-control" id="id" type="text" value="I001" aria-label="readonly input example" readonly>                        </div>
+                                    <input class="form-control" id="id" type="text" value="" aria-label="readonly input example" readonly>                        </div>
                                 <div class="mb-1">
                                     <label for="item_name" class="form-label mb-0" style="font-size: 17px;">Item Name</label>
                                     <input type="text" class="form-control form-control-sm" id="item_name" placeholder="">
@@ -141,8 +141,8 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-1">
-                        <label for="nextId" class="form-label mb-0" style="font-size: 17px;">Id</label>
-                        <input class="form-control" id="nextId" type="text" value="I001" aria-label="readonly input example" readonly>                        </div>
+                        <label for="nextItemId" class="form-label mb-0" style="font-size: 17px;">Id</label>
+                        <input class="form-control" id="nextItemId" type="text" value="I001" aria-label="readonly input example" readonly>                        </div>
                     <div class="mb-1">
                         <label for="newItemName" class="form-label mb-0" style="font-size: 17px;">Item Name</label>
                         <input type="text" class="form-control form-control-sm" id="newItemName">
@@ -183,7 +183,7 @@
         // To store item details on an array / db
         let item_db = [];
 
-        generateNextId();
+        generateNextItemId();
 
         // to load stored item details on the table
         function loadItemsOnTable() {
@@ -207,14 +207,14 @@
         }
 
         // to generate item ids automatically
-        function generateNextId() {
-            const nextId = 'I' + String(item_db.length + 1).padStart(3, '0');
-            $('#nextId').val(nextId);
+        function generateNextItemId() {
+            const nextItemId = 'I' + String(item_db.length + 1).padStart(3, '0');
+            $('#nextItemId').val(nextItemId);
         }
 
         // When Save a new item
         $('#item_save').on('click', function () {
-            let id = $('#nextId').val();
+            let id = $('#nextItemId').val();
             let name = $('#newItemName').val();
             let price = $('#newItemPrice').val();
             let qoh = $('#newItemQoh').val();
@@ -249,7 +249,7 @@
             $('#newItemPrice').val("");
             $('#newItemQoh').val("");
 
-            generateNextId();
+            generateNextItemId();
         });
 
         // to update item details
@@ -312,6 +312,26 @@
             $('#qoh').val("");
         });
 
+        $('#item_delete').on('click', function () {
+            if (selectedItemIndex !== -1) {
+                // selected index and range (ensure only selected item deleting)
+                item_db.splice(selectedItemIndex, 1);
+                loadItemsOnTable();
+
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Item has been deleted successfully.",
+                    icon: "success"
+                });
+
+                // reset form
+                $('#item_form_fieldset').prop('disabled', true);
+                $('#item_reset').click();
+                selectedItemIndex = -1;
+            }
+        });
+
+
         // select an item by click on a table row
         $('#item_tbody').on('click', 'tr', function () {
             //const index = $(this).index();
@@ -327,6 +347,7 @@
 
             $('#item_form_fieldset').prop('disabled', false);
         });
+
 
     </script>
 
