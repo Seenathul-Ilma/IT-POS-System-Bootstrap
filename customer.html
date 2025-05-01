@@ -242,6 +242,82 @@
             generateNextId();
         });
 
+        // to update customer details
+        $('#customer_update').on('click', function () {
+            let id = $('#id').val();
+            let name = $('#name').val();
+            let phone = $('#phone').val();
+            let address = $('#address').val();
+
+
+            if (name === '' || phone === '' || address === '') {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error!",
+                    text: "Please enter valid inputs..!"
+                });
+            } else if (selectedCustomerIndex !== -1) {
+
+                customer_db[selectedCustomerIndex] = {
+                    id: id,
+                    name: name,
+                    phone: phone,
+                    address: address
+                };
+
+                loadCustomersOnTable();
+
+                console.log(customer_db);
+
+                Swal.fire({
+                    title: "Customer updated successfully..!",
+                    icon: "success",
+                    draggable: true
+                });
+
+                $('#id').val("");
+                $('#name').val("");
+                $('#address').val("");
+                $('#phone').val("");
+
+                // Reset form and index
+                $('#customer_form_fieldset').prop('disabled', true);
+                $('#customer_reset').click();
+                selectedCustomerIndex = -1;
+
+            } else {
+                Swal.fire({
+                    icon: "warning",
+                    title: "No customer selected!",
+                    text: "Please select a customer to update."
+                });
+            }
+        });
+
+        // Reset the form
+        $('#customer_reset').on('click', function () {
+            $('#id').val("");
+            $('#name').val("");
+            $('#address').val("");
+            $('#phone').val("");
+        });
+
+        //
+        $('#customer_tbody').on('click', 'tr', function () {
+            //const index = $(this).index();
+            //const selectedCustomer = customer_db[index];
+            selectedCustomerIndex = $(this).index();
+            const selectedCustomer = customer_db[selectedCustomerIndex];
+
+            // to fill the form with selected customer's data
+            $('#id').val(selectedCustomer.id);
+            $('#name').val(selectedCustomer.name);
+            $('#phone').val(selectedCustomer.phone);
+            $('#address').val(selectedCustomer.address);
+
+            $('#customer_form_fieldset').prop('disabled', false);
+        });
+
     </script>
 
 </body>
