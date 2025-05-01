@@ -302,7 +302,26 @@
             $('#phone').val("");
         });
 
-        //
+        $('#customer_delete').on('click', function () {
+            if (selectedCustomerIndex !== -1) {
+                // selected index and range (ensure only that customer deleting)
+               customer_db.splice(selectedCustomerIndex, 1);
+               loadCustomersOnTable();
+
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Customer has been deleted successfully.",
+                    icon: "success"
+                });
+
+                // reset form
+                $('#customer_form_fieldset').prop('disabled', true);
+                $('#customer_reset').click();
+                selectedCustomerIndex = -1;
+            }
+        });
+
+        // select a customer by click on a table row
         $('#customer_tbody').on('click', 'tr', function () {
             //const index = $(this).index();
             //const selectedCustomer = customer_db[index];
