@@ -65,7 +65,7 @@
                                 <button class="btn btn-secondary text-dark btn-sm" id="search_item_btn" type="submit"><i class="ti ti-search"></i></button>
                             </form>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body overflow-auto" style="max-height: 500px; min-height: 500px;">
                             <div class="row mt-3" id="item_tbody">
                                 <!-- JS will inject item cards here (according to item list) -->
                             </div>
@@ -88,10 +88,13 @@
                                 </datalist>
                             </form>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body overflow-auto" style="max-height: 450px; min-height: 450px;">
                             <div class="row mt-3" id="item_cart">
                                 <!-- JS will inject order item cards here (according to item list) -->
                             </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-secondary text-dark btn-sm w-100" id="finalize-order-place-btn" type="submit">Place Order</button>
                         </div>
                     </div>
                 </div>
@@ -113,12 +116,12 @@
 
         $(document).ready(function () {
             items = [
-                { name: "Toffee", price: 15.00, qty: 20 },
-                { name: "Cake", price: 1200.00, qty: 5 },
-                { name: "Chocolate", price: 160.00, qty: 50 },
-                { name: "Lollipop", price: 10.00, qty: 100 },
-                { name: "Biscuit", price: 100.00, qty: 40 },
-                { name: "Marshmallows", price: 150.00, qty: 80 }
+                { name: "Toffee", price: 15.00, qoh: 20 },
+                { name: "Cake", price: 1200.00, qoh: 5 },
+                { name: "Chocolate", price: 160.00, qoh: 50 },
+                { name: "Lollipop", price: 10.00, qoh: 100 },
+                { name: "Biscuit", price: 100.00, qoh: 40 },
+                { name: "Marshmallows", price: 150.00, qoh: 80 }
             ];
             renderItems();
         });
@@ -213,8 +216,8 @@
             count++;
 
             // Check quantity limit
-            if (count > itemData.qty) {
-                alert(`Only ${itemData.qty} ${item}(s) available.`);
+            if (count > itemData.qoh) {
+                alert(`Only ${itemData.qoh} ${item}(s) available.`);
                 return;
             }
 
@@ -223,7 +226,27 @@
             totalItemAmountText.text((price * count).toFixed(2));
         });
 
+        $(document).on('click', ".decreaseCount", function () {
+            const cardBody = $(this).closest(".card-body");
+            const countSpans = cardBody.find(".item-cart-count");
+            const totalItemAmountText = cardBody.find(".item-total-amount");
+            const item = cardBody.find(".card-title").text().split(" x ")[0].trim();
+            const price = items.find(i => i.name === item).price;
+            //const itemData = items.find(i => i.name === item);
 
+            // Use the first count span to read the current count
+            let count = parseInt($(countSpans[0]).text());
+            count--;
+
+            // Check quantity limit
+            if (count < 1) {
+                return;
+            }
+
+            countSpans.text(count);
+
+            totalItemAmountText.text((price * count).toFixed(2));
+        });
     </script>
 
 </body>
