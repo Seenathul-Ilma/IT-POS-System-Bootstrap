@@ -247,6 +247,11 @@
 
             totalItemAmountText.text((price * count).toFixed(2));
         });
+
+        $(document).on("click", "#remove_from_cart_btn", function () {
+            $(this).closest(".col-6").remove();
+        });
+
     </script>
 
 </body>
