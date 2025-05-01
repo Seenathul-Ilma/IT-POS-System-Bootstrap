@@ -304,6 +304,13 @@
             }
         });
 
+        // Reset the form
+        $('#item_reset').on('click', function () {
+            $('#id').val("");
+            $('#item_name').val("");
+            $('#price').val("");
+            $('#qoh').val("");
+        });
 
         // select an item by click on a table row
         $('#item_tbody').on('click', 'tr', function () {
