@@ -54,7 +54,7 @@
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#addNewItemModal"><i class="ti ti-plus"></i> New</button>
             </a>
             <form class="d-flex search" role="search">
-                <input class="form-control me-2" id="search_input" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" id="search_item_input" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-secondary text-dark btn-sm" id="search_btn" type="submit">Search</button>
             </form>
         </div>
@@ -346,6 +346,25 @@
             $('#qoh').val(selectedItem.qoh);
 
             $('#item_form_fieldset').prop('disabled', false);
+        });
+
+        // to search items by a data
+        $(document).ready(function(){
+            function filterItems(){
+                var value = $(this).val().toLowerCase();
+                $("#item_tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            }
+
+            // to filter items at live (while typing)
+            $("#search_item_input").on("keyup", filterItems);
+
+            // to filter items after click search btn
+            $('#search_btn').on('click', function (e) {
+                e.preventDefault();
+                filterItems();
+            });
         });
 
 
