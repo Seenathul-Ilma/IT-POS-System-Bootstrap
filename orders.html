@@ -49,7 +49,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand text-secondary">
                     Orders
-                    <button type="button" class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i> New</button>
+                    <button type="button" id="new_order_btn" class="btn btn-secondary btn-sm"><i class="ti ti-plus"></i> New</button>
                 </a>
             </div>
         </nav>
@@ -115,6 +115,14 @@
         let items = [];
 
         $(document).ready(function () {
+
+            $("#search_item_input").prop("disabled", true);
+            $("#search_item_btn").prop("disabled", true);
+            $("#search_customer_input").prop("disabled", true);
+            $("#search_customer_btn").prop("disabled", true);
+            $("#finalize-order-place-btn").prop("disabled", true);
+            $(".card-body").css("pointer-events", "none").css("opacity", "0.6");
+
             items = [
                 { name: "Toffee", price: 15.00, qoh: 20 },
                 { name: "Cake", price: 1200.00, qoh: 5 },
@@ -140,7 +148,7 @@
                                     <p class="card-text mb-2">Rs. ${item.price.toFixed(2)}</p>
                                 </div>
                                 <div class="text-end mt-auto">
-                                    <button class="btn btn-dark btn-sm" id="add_to_cart_btn" data-index="${index}">
+                                    <button class="btn btn-dark btn-sm add_to_cart_btn" data-index="${index}">
                                         <i class="ti ti-shopping-cart"></i>
                                     </button>
                                 </div>
@@ -172,13 +180,13 @@
 
         $(document).ready(function () {
             $.each(customerList, function (index, customer) {
-                const option = `<option value="${customer}">`;
-                datalist_customers.append(option);
+                let customerOption = `<option value="${customer}">`;
+                datalist_customers.append(customerOption);
             });
         });
 
         // add items to cart
-        $(document).on("click", "#add_to_cart_btn", function () {
+        $(document).on("click", ".add_to_cart_btn", function () {
             const index = $(this).data("index");
             const item = items[index];
             let count = 1;
@@ -194,7 +202,7 @@
                                     <button class="btn btn-outline-dark rounded-circle btn-dark text-white btn-sm me-1 decreaseCount" style="width: 20px; height: 20px; padding: 0;"><i class="ti ti-minus"></i></button>
                                 </div>
                                 <div class="text-end mt-auto">
-                                    <button class="btn btn-dark btn-sm" id="remove_from_cart_btn"><i class="ti ti-trash"></i></button>
+                                    <button class="btn btn-dark btn-sm remove_from_cart_btn"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +219,6 @@
             const price = items.find(i => i.name === item).price;
             const itemData = items.find(i => i.name === item);
 
-            // Use the first count span to read the current count
             let count = parseInt($(countSpans[0]).text());
             count++;
 
@@ -234,7 +241,6 @@
             const price = items.find(i => i.name === item).price;
             //const itemData = items.find(i => i.name === item);
 
-            // Use the first count span to read the current count
             let count = parseInt($(countSpans[0]).text());
             count--;
 
@@ -248,9 +254,55 @@
             totalItemAmountText.text((price * count).toFixed(2));
         });
 
-        $(document).on("click", "#remove_from_cart_btn", function () {
+        $(document).on("click", ".remove_from_cart_btn", function () {
             $(this).closest(".col-6").remove();
         });
+
+        $(document).on("click", "#finalize-order-place-btn", function (e) {
+            e.preventDefault();
+
+            const customerName = $("#search_customer_input").val().trim();
+
+            if (!customerName || !customerList.includes(customerName)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Customer not selected!',
+                    text: 'Please select a valid customer before placing the order.',
+                });
+                return;
+            }
+
+            const cartItems = $("#item_cart").children(".col-6, .col-md-6");
+
+            if (cartItems.length === 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Cart is empty!',
+                    text: 'Please add items before placing the order.',
+                });
+                return;
+            }
+
+            // If cart is not empty
+            Swal.fire({
+                icon: 'success',
+                title: 'Order placed!',
+                text: 'Your order has been successfully submitted.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                $("#item_cart").empty();
+            });
+        });
+
+        $(document).on("click", "#new_order_btn", function () {
+            $("#search_item_input").prop("disabled", false);
+            $("#search_item_btn").prop("disabled", false);
+            $("#search_customer_input").prop("disabled", false);
+            $("#search_customer_btn").prop("disabled", false);
+            $("#finalize-order-place-btn").prop("disabled", false);
+            $(".card-body").css("pointer-events", "auto").css("opacity", "1");
+        });
+
 
     </script>
 
