@@ -11,9 +11,7 @@
 </head>
 <body>
 
-<!-- Offcanvas sidebar for mobile -->
-
-<nav class="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
+<nav class="navbar navbar-expand-md bg-light" data-bs-theme="light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="assets/cookieBlack.png" alt="logo" width="30" height="30" class="d-inline-block align-text-top"> Bite of Bliss</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,8 +47,19 @@
 <div class="container-fluid customer-page">
 
     <!-- Page heading and search -->
-    <h3>Dashboard</h3>
-    <hr>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand text-secondary">
+                Customers
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#addNewCustomerModal"><i class="ti ti-plus"></i> New</button>
+            </a>
+            <form class="d-flex search" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-secondary text-dark btn-sm" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
     <!-- (Left) form card & table (Right) -->
     <div class="d-grid gap-2 col-12 mx-0">
         <div class="row">
@@ -58,22 +67,27 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <div class="card card-sm">
                     <div class="card-body">
-                        <div class="mb-1">
-                            <label for="name" class="form-label" style="font-size: 17px;">Name</label>
-                            <input type="text" class="form-control form-control-sm" id="name">
-                        </div>
-                        <div class="mb-1">
-                            <label for="phone" class="form-label" style="font-size: 17px;">Contact</label>
-                            <input type="text" class="form-control form-control-sm" id="phone">
-                        </div>
-                        <div class="mb-2">
-                            <label for="address" class="form-label" style="font-size: 17px;">Address</label>
-                            <textarea class="form-control form-control-sm" id="address" style="height: 60px;"></textarea>
-                        </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-primary btn-dark btn-sm" type="button">Reset</button>
-                            <button class="btn btn-primary btn-dark btn-sm" type="button">Edit</button>
-                        </div>
+                        <form>
+                            <div class="mb-1">
+                                <label for="nextId" class="form-label mb-0" style="font-size: 17px;">Id</label>
+                                <input class="form-control" id="nextId" type="text" value="C001" aria-label="readonly input example" readonly>                        </div>
+                            <div class="mb-1">
+                                <label for="name" class="form-label mb-0" style="font-size: 17px;">Name</label>
+                                <input type="text" class="form-control form-control-sm" id="name">
+                            </div>
+                            <div class="mb-1">
+                                <label for="phone" class="form-label mb-0" style="font-size: 17px;">Contact</label>
+                                <input type="text" class="form-control form-control-sm" id="phone">
+                            </div>
+                            <div class="mb-2">
+                                <label for="address" class="form-label mb-0" style="font-size: 17px;">Address</label>
+                                <textarea class="form-control form-control-sm" id="address" style="height: 60px;"></textarea>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button class="btn btn-primary btn-dark btn-sm" type="button">Reset</button>
+                                <button class="btn btn-primary btn-dark btn-sm" type="button">Edit</button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
@@ -120,10 +134,44 @@
             </div>
         </div>
 
-        <!-- Form and table -->
-
     </div>
 
+</div>
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="addNewCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Customer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-1">
+                        <label for="newNextId" class="form-label mb-0" style="font-size: 17px;">Id</label>
+                        <input class="form-control" id="newNextId" type="text" value="C001" aria-label="readonly input example" readonly>                        </div>
+                    <div class="mb-1">
+                        <label for="newName" class="form-label mb-0" style="font-size: 17px;">Name</label>
+                        <input type="text" class="form-control form-control-sm" id="newName">
+                    </div>
+                    <div class="mb-1">
+                        <label for="newPhone" class="form-label mb-0" style="font-size: 17px;">Contact</label>
+                        <input type="text" class="form-control form-control-sm" id="newPhone">
+                    </div>
+                    <div class="mb-2">
+                        <label for="newAddress" class="form-label mb-0" style="font-size: 17px;">Address</label>
+                        <textarea class="form-control form-control-sm" id="newAddress" style="height: 60px;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
