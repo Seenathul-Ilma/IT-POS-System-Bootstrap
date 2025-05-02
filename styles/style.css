@@ -22,8 +22,8 @@ html, body {
     overflow-x: hidden;
 }
 
-.customer-page {
-    padding-top: 30px;
+.item-page, .customer-page, .invoice-page, .order-page {
+    padding-top: 20px;
     position: relative;
     z-index: 1;
 }
