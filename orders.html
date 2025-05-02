@@ -76,6 +76,12 @@
                 <div class="col-sm-5 mb-3 mb-sm-0">
                     <div class="card card-sm">
                         <div class="card-header">
+                            <div class="row align-items-center mb-2">
+                                <label for="next_order_id" class="col-auto col-form-label" style="font-size: 17px;">Order Id</label>
+                                <div class="col">
+                                    <input class="form-control" id="next_order_id" type="text" value="" aria-label="readonly input example" readonly>
+                                </div>
+                            </div>
                             <form class="d-flex search" role="search">
                                 <input class="form-control me-2" list="customerDatalistOptions" id="search_customer_input" type="search" placeholder="Search Customers.." aria-label="Search">
                                 <button class="btn btn-secondary text-dark btn-sm" id="search_customer_btn" type="submit"><i class="ti ti-search"></i></button>
@@ -88,7 +94,7 @@
                                 </datalist>
                             </form>
                         </div>
-                        <div class="card-body overflow-auto" style="max-height: 450px; min-height: 450px;">
+                        <div class="card-body overflow-auto" style="max-height: 410px; min-height: 410px;">
                             <div class="row mt-3" id="item_cart">
                                 <!-- JS will inject order item cards here (according to item list) -->
                             </div>
@@ -113,6 +119,7 @@
     <script>
         // Sample items array (can be fetched from backend too)
         let items = [];
+        let orders_db = [];
 
         $(document).ready(function () {
 
@@ -175,12 +182,19 @@
 
 
         //  get Customer list
-        const customerList = ["John", "Mary", "Nimal", "Jeeva", "Priya", "Akshay"];
+        const customerList = [
+            { id: "C001", name: "John" },
+            { id: "C002", name: "Mary" },
+            { id: "C003", name: "Nimal" },
+            { id: "C004", name: "Jeeva" },
+            { id: "C005", name: "Priya" },
+            { id: "C006", name: "Akshay" }
+        ];
         const datalist_customers = $("#customerDatalistOptions");
 
         $(document).ready(function () {
             $.each(customerList, function (index, customer) {
-                let customerOption = `<option value="${customer}">`;
+                let customerOption = `<option value="${customer.name}">`;
                 datalist_customers.append(customerOption);
             });
         });
@@ -262,8 +276,10 @@
             e.preventDefault();
 
             const customerName = $("#search_customer_input").val().trim();
+            const customer = customerList.find(c => c.name === customerName);
 
-            if (!customerName || !customerList.includes(customerName)) {
+            //if (!customerName || !customerList.includes(customerName)) {
+            if (!customer) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Customer not selected!',
@@ -272,7 +288,7 @@
                 return;
             }
 
-            const cartItems = $("#item_cart").children(".col-6, .col-md-6");
+            const cartItems = $("#item_cart").children(".col-12, .col-md-12");
 
             if (cartItems.length === 0) {
                 Swal.fire({
@@ -290,7 +306,23 @@
                 text: 'Your order has been successfully submitted.',
                 confirmButtonText: 'OK'
             }).then(() => {
+                const order = {
+                    orderId: $('#next_order_id').val(),
+                    customer: customer.id,
+                    items: []
+                };
+                orders_db.push(order);
                 $("#item_cart").empty();
+
+                generateNextOrderId();
+                $("#search_customer_input").val("");
+                /*$("#search_item_input").prop("disabled", true);
+                $("#search_item_btn").prop("disabled", true);
+                $("#search_customer_input").prop("disabled", true);
+                $("#search_customer_btn").prop("disabled", true);
+                $("#finalize-order-place-btn").prop("disabled", true);
+                $(".card-body").css("pointer-events", "none").css("opacity", "0.6");*/
+
             });
         });
 
@@ -301,8 +333,14 @@
             $("#search_customer_btn").prop("disabled", false);
             $("#finalize-order-place-btn").prop("disabled", false);
             $(".card-body").css("pointer-events", "auto").css("opacity", "1");
+
+            generateNextOrderId();
         });
 
+        function generateNextOrderId() {
+            const nextOrderId = 'O' + String(orders_db.length + 1).padStart(3, '0');
+            $('#next_order_id').val(nextOrderId);
+        }
 
     </script>
 
