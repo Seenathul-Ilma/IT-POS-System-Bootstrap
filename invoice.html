@@ -69,7 +69,7 @@
                                 </tr>
                                 </thead>
                                 <tbody id="invoice_tbody">
-                                <tr>
+                                <!--<tr>
                                     <th scope="row">OR001</th>
                                     <td>O001</td>
                                     <td>C001</td>
@@ -80,7 +80,7 @@
                                             <i class="ti ti-printer"></i>
                                         </button>
                                     </td>
-                                </tr>
+                                </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -93,6 +93,38 @@
         <script src="lib/jquery-3.7.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+
+            let invoices = [];
+
+            $(document).ready(function() {
+                invoices = [
+                    {invoiceId: "INV001", orderId: "O001", customer: "John", date: "2025-04-01", total: 4500.00},
+                    {invoiceId: "INV002", orderId: "O002", customer: "Mary", date: "2025-04-02", total: 7800.00},
+                    {invoiceId: "INV003", orderId: "O003", customer: "Priya", date: "2025-04-03", total: 12000.00}
+                ];
+
+                invoices.forEach(invoice => {
+                    const row = `
+                                    <tr>
+                                        <th scope="row">${invoice.invoiceId}</th>
+                                        <td>${invoice.orderId}</td>
+                                        <td>${invoice.customer}</td>
+                                        <td>${invoice.date}</td>
+                                        <td>${invoice.total.toFixed(2)}</td>
+                                        <td>
+                                            <button class="btn btn-light text-dark btn-sm add_to_cart_btn" style="width: 30px; height: 30px; padding: 0; font-size: 20px">
+                                                <i class="ti ti-printer"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                    $("#invoice_tbody").append(row);
+                });
+            });
+
+        </script>
 
 
 </body>
