@@ -22,6 +22,20 @@ html, body {
     overflow-x: hidden;
 }
 
+.dashboard {
+    background-image: url("/assets/bake-background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: calc(100vh - 58px);
+}
+
+main {
+    padding-top: 30px;
+    position: relative;
+    z-index: 1;
+}
+
 .item-page, .customer-page, .invoice-page, .order-page {
     padding-top: 20px;
     position: relative;
