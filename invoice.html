@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POS | Invoices</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <link rel="stylesheet" href="lib/normalize.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-md bg-light" data-bs-theme="light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="assets/cookieBlack.png" alt="logo" width="30" height="30" class="d-inline-block align-text-top"> Bite of Bliss</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customer.html">Customers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Items</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="invoice.html">Invoices</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item text-white text-nowrap">
+                            <a class="nav-link" href="#">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid invoice-page">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-secondary">
+                        Invoices
+                    </a>
+                </div>
+            </nav>
+
+            <div class="col-sm-12 mb-6 mb-sm-0">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover table-striped w-100">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Invoice Ids</th>
+                                    <th scope="col">Order Ids</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="invoice_tbody">
+                                <!--<tr>
+                                    <th scope="row">OR001</th>
+                                    <td>O001</td>
+                                    <td>C001</td>
+                                    <td>2025-04-04</td>
+                                    <td>50000.00</td>
+                                    <td>
+                                        <button class="btn btn-light text-dark btn-sm add_to_cart_btn" style="width: 30px; height: 30px; padding: 0; font-size: 20px">
+                                            <i class="ti ti-printer"></i>
+                                        </button>
+                                    </td>
+                                </tr>-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script src="lib/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+
+            let invoices = [];
+
+            $(document).ready(function() {
+                invoices = [
+                    {invoiceId: "1", orderId: "OR001", customer: "C001", date: "2025-04-01", total: 4500.00},
+                    {invoiceId: "2", orderId: "0R002", customer: "C002", date: "2025-04-02", total: 7800.00},
+                    {invoiceId: "3", orderId: "0R003", customer: "C003", date: "2025-04-03", total: 12000.00}
+                ];
+
+                invoices.forEach(invoice => {
+                    const row = `
+                                    <tr>
+                                        <th scope="row">${invoice.invoiceId}</th>
+                                        <td>${invoice.orderId}</td>
+                                        <td>${invoice.customer}</td>
+                                        <td>${invoice.date}</td>
+                                        <td>${invoice.total.toFixed(2)}</td>
+                                        <td>
+                                            <button class="btn btn-light text-dark btn-sm print_invoice_btn" style="width: 30px; height: 30px; padding: 0; font-size: 20px">
+                                                <i class="ti ti-printer"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                    $("#invoice_tbody").append(row);
+                });
+            });
+
+            $(document).on("click", ".print_invoice_btn", function () {
+                const receiptId = $(this).data("id");
+                const items = [
+                    { name: "Cake", price: 1200.00 },
+                    { name: "Chocolate", price: 160.00, quantity: 3 }
+                ];
+                const date = new Date().toLocaleDateString('en-LK');
+                const time = new Date().toLocaleTimeString('en-LK', { hour: '2-digit', minute: '2-digit' });
+                const subTotal = items.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+                const tax = 0;
+                const total = subTotal + tax;
+
+                populateInvoice(items, receiptId, date, time, subTotal, tax, total);
+            });
+
+            function populateInvoice(items, receiptId, date, time, subTotal, tax, total) {
+                const modalHtml = `
+                    <div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
+                            <div class="modal-content">
+                                <div class="modal-header bg-dark text-white">
+                                <h5 class="modal-title" id="invoiceModalLabel"><i class="ti ti-receipt"></i> RECEIPT</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="text-center mb-3">
+                                        <h6 class="mb-0">Bite Of Bliss</h6>
+                                        <p class="mb-0 small">31/5z, Main Street, Kalutara South</p>
+                                        <p class="mb-0 small">Email: bob@gmail.com</p>
+                                        <p class="small">Phone: +94712345678</p>
+                                    </div>
+                                    <hr class="my-2">
+                                    <div class="row mb-2">
+                                        <div class="col-8">Reciept Id: OR001</div>
+                                        <div class="col-4 text-end">Invoice No: 1</div>
+                                        <div class="col-8">Date: ${date}</div>
+                                        <div class="col-4 text-end">Time: ${time}</div>
+                                    </div>
+                                    <hr class="my-2">
+                                    <div id="invoice-items">
+                                        ${items.map(item => `
+                                            <div class="row">
+                                                <div class="col-7">${item.name}${item.quantity ? ' x ' + item.quantity : ''}</div>
+                                                <div class="col-5 text-end">Rs. ${(item.price * (item.quantity || 1)).toFixed(2)}</div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                    <hr class="my-2">
+                                    <div class="row">
+                                        <div class="col-7">Sub Total</div>
+                                        <div class="col-5 text-end">Rs. ${subTotal.toFixed(2)}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-7">+ Tax</div>
+                                        <div class="col-5 text-end">Rs. ${tax.toFixed(2)}</div>
+                                    </div>
+                                    <hr class="my-2">
+                                    <div class="row">
+                                        <div class="col-7"><strong>Total</strong></div>
+                                        <div class="col-5 text-end"><strong>Rs. ${total.toFixed(2)}</strong></div>
+                                    </div>
+                                    <hr class="my-3">
+                                    <div class="text-center">
+                                        <p class="small">Thank You For Visiting!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-dark">Print</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+                $("#invoiceModal").remove();
+
+                $("body").append(modalHtml);
+
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById("invoiceModal"));
+                modal.show();
+            }
+
+
+        </script>
+
+
+</body>
+</html>

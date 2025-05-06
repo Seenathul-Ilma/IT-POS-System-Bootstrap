@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5c48a144-34d7-4be6-9954-94416612b67b" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Seenathul-Ilma&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Seenathul-Ilma/IT-POS-System-Bootstrap.git&quot;,
+    &quot;accountId&quot;: &quot;bc8a2498-4d16-4dae-aeb3-e491552a6338&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2vgLmEI6rVr7hq6ZJxhu4k3kxbV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showModules" value="false" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/IJSE/Internet Technologies/IT-POS-System-Bootstrap/assets&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/user/AppData/Roaming/JetBrains/IntelliJIdea2024.2/node/versions/22.15.0/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\IJSE\Internet Technologies\IT-POS-System-Bootstrap\assets" />
+      <recent name="C:\IJSE\Internet Technologies\IT-POS-System-Bootstrap\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\IJSE\Internet Technologies\IT-POS-System-Bootstrap\lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/IT-POS-System-Bootstrap/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c48a144-34d7-4be6-9954-94416612b67b" name="Changes" comment="" />
+      <created>1744561930458</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744561930458</updated>
+      <workItem from="1744561931413" duration="134000" />
+      <workItem from="1744562124684" duration="1598000" />
+      <workItem from="1745757103931" duration="13240000" />
+      <workItem from="1745818959201" duration="7842000" />
+      <workItem from="1745830192203" duration="1622000" />
+      <workItem from="1745843292816" duration="9879000" />
+      <workItem from="1745896832975" duration="22104000" />
+      <workItem from="1745987333933" duration="9648000" />
+      <workItem from="1746034405355" duration="842000" />
+      <workItem from="1746035371639" duration="660000" />
+      <workItem from="1746036047351" duration="299000" />
+      <workItem from="1746036356601" duration="1144000" />
+      <workItem from="1746062664504" duration="7023000" />
+      <workItem from="1746083744212" duration="8992000" />
+      <workItem from="1746093130397" duration="24032000" />
+      <workItem from="1746148169025" duration="2245000" />
+      <workItem from="1746151195562" duration="14835000" />
+      <workItem from="1746182962353" duration="796000" />
+      <workItem from="1746183791534" duration="147000" />
+      <workItem from="1746183949929" duration="14707000" />
+      <workItem from="1746244077531" duration="466000" />
+      <workItem from="1746244556846" duration="2382000" />
+      <workItem from="1746249890352" duration="1110000" />
+      <workItem from="1746278794667" duration="1355000" />
+      <workItem from="1746416404682" duration="3969000" />
+      <workItem from="1746535080162" duration="59000" />
+      <workItem from="1746535145914" duration="430000" />
+      <workItem from="1746535586867" duration="162000" />
+      <workItem from="1746535757910" duration="164000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
