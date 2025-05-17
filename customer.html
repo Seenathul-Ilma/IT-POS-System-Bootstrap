@@ -310,22 +310,36 @@
         });
 
         $('#customer_delete').on('click', function () {
-            if (selectedCustomerIndex !== -1) {
-                // selected index and range (ensure only that customer deleting)
-               customer_db.splice(selectedCustomerIndex, 1);
-               loadCustomersOnTable();
 
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Customer has been deleted successfully.",
-                    icon: "success"
-                });
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (selectedCustomerIndex !== -1) {
+                        // selected index and range (ensure only that customer deleting)
+                        customer_db.splice(selectedCustomerIndex, 1);
+                        loadCustomersOnTable();
 
-                // reset form
-                $('#customer_form_fieldset').prop('disabled', true);
-                $('#customer_reset').click();
-                selectedCustomerIndex = -1;
-            }
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Customer has been deleted successfully.",
+                            icon: "success"
+                        });
+
+                        // reset form
+                        $('#customer_form_fieldset').prop('disabled', true);
+                        $('#customer_reset').click();
+                        selectedCustomerIndex = -1;
+                    }
+                }
+            });
+
         });
 
         // select a customer by click on a table row
